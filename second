@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RYH 个人简介</title>
+		<style type="text/css">
+			body {
+				background-image: url("images/tulip.gif");
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				background-color: #499aa5;
+                color: black;
+				padding: 20px;}
+		</style>
+	</head>
+	<body>
+		<h1>RYH 个人介绍</h1>
+		<h2>基本资料</h2>
+		<p><b><i>冉艺宏</i></b> , 女，20岁，就读于 <b>华中师范大学</b> 。</p>
+        <p></p>
+		<h2>兴趣爱好</h2>
+		<p>跑步，游泳，打游戏，踢足球</p>
+		<h2>近期规划</h2>
+        <p>上学期间好好学习，本学期计划备考<b>英语六级</b>以及<b>软件工程师证书</b></p>
+        <h2>喜欢的歌手</h2>
+        <p><a href="https://baike.baidu.com/item/%E8%B4%BE%E6%96%AF%E6%B1%80%C2%B7%E6%AF%94%E4%BC%AF/902310?fromtitle=JustinBieber&fromid=11257588&fr=aladdin">Justin Bieber </a></p>
+		<h2>最喜欢的风景照片</h2>
+        <p><img src="C:\Users\Administrator\Pictures\Camera Roll\1.jpg" width="640" height="320" /></p>
+	</body>
+</html>
