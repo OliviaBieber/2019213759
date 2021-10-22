@@ -1,112 +1,152 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-    #header {
-    background-color:pink;
-    color:yellowgreen;
-    text-align:center;
-    padding:5px;
-}
-#nav {
-    line-height:30px;
-    background-color:#eeeeee;
-    height:795px;
-    width:200px;
-    float:left;
-    padding:30px;
-    text-align:center;	      
-}
 
-
-#footer {
-    background-color:pink;
-    color:black;
-    clear:both;
-    text-align:center;
-   padding:5px;	 	 
-}
-.grid-container {
-  display: grid;
-  grid-template-columns: auto;
-}
-.grid-item {
-  background-color: rgb(16, 238, 190);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 10px;
-  font-size: 30px;
-  text-align: center;
-}
-
-</style>
-</head>
-<body>
-<id="1">
-    <div id="header">
-        <h1>RYH 个人介绍</h1>
-        </div>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>个人介绍</title>
+            <link rel="stylesheet" href="style.css">
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                }
         
-    <div id="nav">
-        <table border="2">
-        <tr><td><p>姓名</p></td></tr>
-        <tr><td><p>性别</p></td></tr>
-        <tr><td><p>爱好</p></td></tr>
-        <tr><td><p>最想去的地方</p></td></tr>
-        <tr><td><p>最想做的事情</p></td></tr>
-        <tr><td><p>近期打算</p></td></tr>
-        <tr><td><p>最喜欢的歌手</p></td></tr>
-        <tr><td><p>最喜欢的歌曲</p></td></tr>
-        <tr><td>
-          <p>最喜欢的风景照片</p>
-          <script>
-            function light(sw) {
-              var pic;
-              if (sw == 0) {
-                pic = "这是一张简单的风景照"
-              } else {
-                pic=<a hrif= "https://tv.sohu.com/v/dXMvMzM1OTQyMDU1LzExNzIwNzAzMC5zaHRtbA==.html">点击查看详情</a>
-              }
-              document.getElementById('myImage').src = pic;
+                body {
+                    background:#4c4c4c;
+                    background-size: cover;
+                }
+                .nav {
+                height: 41px;
+                border-top: 3px solid #b4fffa;
+                border-bottom: 1px solid #edeef0;
+                background-color: #fcfcfc;
+                line-height: 41px;
             }
-            </script>
-            
-            <img id="myImage" src="C:\Users\Administrator\Pictures\Camera Roll\1.jpg"width="200" height="180">
-            
-            <p>
-            <button type="button" onclick="light(1)">变成简介</button>
-            <button type="button" onclick="light(0)">变成视频</button>
-            </p>
-        </td></tr>
-        </table>
-        </div>
-        <div class="grid-container">
-            <div class="grid-item">
-              <id="demo">RYH
-
-              <script>
-              function myFunction() {
-                document.getElementById("demo").innerHTML = "是小可爱！";        
-              }
-              </script>
-              
-              <button type="button" onclick="myFunction()">点击我了解更多！</button>
+    
+            .nav a {
+               
+                display: inline-block;
+                height: 41px;
+                font-size: 15px;
+                color: #4c4c4c;
+                text-decoration: none;
+                padding: 0px 20px;
+            }
+    
+            .nav a:hover {
+                background-color: #fcfcfc;
+                color: #93d9eb;
+            }
+        
+                .box {
+                    width: 1200px;
+                    height: 540px;
+                    background: rgba(0, 0, 0, 0.2);
+                    margin: 0 auto;
+                    text-align: center;
+                    margin-top: 10%;
+        
+                }
+        
+                .box .left a {
+                    display: block;
+                    width: 200px;
+                    height: 90px;
+                    background: rgba(0, 0, 0, 0.2);
+                    font-size: 20px;
+                    color: #fff;
+                    text-decoration: none;
+                    padding-left: 30px;
+                    line-height: 90px;
+                }
+        
+                .box .left a:hover {
+                    background-color: #ff6700;
+                }
+        
+                .left {
+                    float: left;
+                    width: 230px;
+                    height: 540px;
+                    background-color: cadetblue;
+                    background: rgba(0, 0, 0, 0.2);
+                }
+        
+                .right {
+                    float: right;
+                    width: 970px;
+                    height: 540px;
+                    background-color: rgba(152, 233, 233, 0.2);
+                    ;
+        
+                }
+        
+                .right>div {
+                    float: left;
+                    width: 470px;
+                    height: 540px;
+                    background: rgba(0, 0, 0, 0.2);
+                    margin-left: 14px;
+                    margin-bottom: 14px;
+                }
+        
+                .right .one {
+                    background-color: rgb(152, 233, 233, 0.2);
+                }
+        
+                .right .photo {
+                    width: 490px;
+                    height: 540px;
+                }
+        
+                .right .one h1 {
+                    color: white;
+                    font-size: 60px;
+                }
+        
+                .right .one p {
+                    font-size: 40px;
+                    font-weight: 500;
+                    color: rgb(96, 73, 160);
+                    font-style:normal;
+                    text-align: center;
+                }
+            </style>
+        </head>
+        
+        <body>
+            <div class="nav">
+                <a href="#">主页</a>
+                <a href="grid 1.html" target="_blank">个人简介</a>
+                <a href="近期规划.html" target="_blank">近期规划</a>
+                <a href="最喜欢的歌手.html" target="_blank">喜欢的歌手</a>
             </div>
-            <div class="grid-item">女</div>
-            <div class="grid-item">跑步，游泳，打游戏，踢足球</div>  
-            <div class="grid-item">西藏</div>
-            <div class="grid-item">去旅游</div>
-            <div class="grid-item">好好学习</div>  
-            <div class="grid-item"><a href="https://baike.baidu.com/item/%E8%B4%BE%E6%96%AF%E6%B1%80%C2%B7%E6%AF%94%E4%BC%AF/902310?fromtitle=JustinBieber&fromid=11257588&fr=aladdin">Justin Bieber </a></div> 
-            <div class="grid-item"><a href="https://music.163.com/#/album?id=1709614">BABY </a></div>  
-            <div class="grid-item"><img src="C:\Users\Administrator\Pictures\Camera Roll\1.jpg" width="640" height="320" /></p></div> 
-          </div>
-            </table>
+            <div class="box">
+                <div class="left">
+                    <a href="#">主页</a>
+                    <a href="grid 1.html" target="_blank">个人简介</a>
+                    <a href="近期规划.html" target="_blank">近期规划</a>
+                    <a href="最喜欢的歌手.html" target="_blank">喜欢的歌手</a>
+                </div>
+                <div class="right">
+                    <div class="one">
+                        <p> </p>
+                        <h1>About this</h1>
+                        <p> </p>
+                        <p>是一个自我介绍</p>
+                        <p> </p>
+                        <p>想了解更多</p>
+                        <p> </p>
+                        <p>点击相关链接跳转</p>
+                          
+                    </div>
+                    <div>
+                        <img src="C:\Users\Administrator\Pictures\Camera Roll\1.jpg" alt="" class="photo">
+                    </div>
+                </div>
             </div>
-        <div id="footer">
-            有需要可以电话，或者QQ、微信联系
-            </div>
-          </id>
-            <html>
-
-
-
+        </body>
+        
+        </html>
+        
