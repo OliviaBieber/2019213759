@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    #header {
+    background-color:pink;
+    color:yellowgreen;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    width:200px;
+    float:left;
+    padding:30px;
+    text-align:center;	      
+}
+
+
+#footer {
+    background-color:pink;
+    color:black;
+    clear:both;
+    text-align:center;
+   padding:5px;	 	 
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto;
+}
+.grid-item {
+  background-color: rgb(114, 117, 117);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+<id="1">
+    <div id="header">
+        <h1>RYH 个人介绍</h1>
+        </div>
+        
+    <div id="nav">
+        <table border="2">
+        <tr><td><p>姓名</p></td></tr>
+        <tr><td><p>性别</p></td></tr>
+        <tr><td><p>爱好</p></td></tr>
+        <tr><td><p>最想去的地方</p></td></tr>
+        <tr><td><p>最想做的事情</p></td></tr>
+        <tr><td>
+          <p>最喜欢的风景照片</p>
+          <script>
+            function light(sw) {
+              var pic;
+              if (sw == 0) {
+                pic = "这是一张简单的风景照"
+              } else {
+                pic=<a hrif= "https://tv.sohu.com/v/dXMvMzM1OTQyMDU1LzExNzIwNzAzMC5zaHRtbA==.html">点击查看详情</a>
+              }
+              document.getElementById('myImage').src = pic;
+            }
+            </script>
+            
+            <img id="myImage" src="C:\Users\Administrator\Pictures\Camera Roll\1.jpg"width="200" height="180">
+            
+            <p>
+            <button type="button" onclick="light(1)">变成简介</button>
+            <button type="button" onclick="light(0)">变成视频</button>
+            </p>
+        </td></tr>
+        </table>
+        </div>
+        <div class="grid-container">
+            <div class="grid-item">RYH</div>
+            <div class="grid-item">女</div>
+            <div class="grid-item">跑步，游泳，打游戏，踢足球</div>  
+            <div class="grid-item">西藏</div>
+            <div class="grid-item">去旅游</div>   
+            <div class="grid-item"><img src="C:\Users\Administrator\Pictures\Camera Roll\1.jpg" width="640" height="320" /></p></div> 
+          </div>
+            </table>
+            </div>
+        <div id="footer">
+            有需要可以电话，或者QQ、微信联系
+            </div>
+          </id>
+            <html>
+
+
+
