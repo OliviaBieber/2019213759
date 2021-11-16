@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>RYH课程表</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  background-color: antiquewhite;
+}
+
+/* 头部样式 */
+.header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+  background-color: rgb(50, 238, 245);
+}
+
+/* 创建2个相等的列 */
+.column {
+  float:left;
+}
+
+.column.left{
+    width: 50%;
+    background-color: greenyellow;
+}
+.column.right{
+    float: right;
+    width: 50%;
+    background-color:palevioletred;
+    text-align: center;
+}
+/* 列后面清除浮动 */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+button {
+background-color:rgb(142, 221, 241);
+}
+
+.show {
+display: block;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>2021-2022学年1学期课程表</h2>
+</div>
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/index.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  <div class="row">
+    <div class="column left">
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+  <table border="1" cellpadding="12" cellspacing="0">
+    <tr class="head" >
+      <td width=12.5%>节次/周次 </td>
+      <td width=12.5%>星期一</td>
+      <td width=12.5%>星期二</td>
+      <td width=12.5%>星期三</td>
+      <td width=12.5%>星期四</td>
+      <td width=12.5%>星期五</td>
+      <td width=12.5%>星期六</td>
+      <td width=12.5%>星期天</td>
+    </tr>
+    <tr>
+      <td class="_1234">第一节<br>8:00</td>
+      <td class=course rowspan="2"><button onclick="displayA()">windows程序设计</button></td>
+      <td class=course rowspan="2"><button onclick="displayB()">web程序设计</button></td>
+      <td class=course rowspan="2"><button onclick="displayC()">人工智能</button></td>
+      <td class=course rowspan="2"><button onclick="displayD()">信息检索技术</button></td>
+      <td class=course rowspan="2"><button onclick="displayE()">操作系统原理</button></td>
+      <td class=course rowspan="8"><button onclick="displayF()">心理学进展</button></td>
+      <td class=course rowspan="8"><button onclick="displayG()">实验心理学</button></td>
+    </tr>
+    <tr>
+      <td class="_1234">第二节</td>
+    </tr>
+    <tr>
+      <td class="_1234">第三节<br>10:10</td>
+      <td class=course rowspan="2"><button onclick="displayH()">微机原理与接口技术</button> </td>
+      <td class=course rowspan="2"></td>
+      <td class=course rowspan="2"><button onclick="displayE()">操作系统原理</button> </td>
+      <td class=course rowspan="2"><button onclick="displayI()">习近平新时代中国特色社会主义概论</button></td>
+      <td class=course rowspan="2"><button onclick="displayN()">人类遗传发育与优生</button> </td>
+    </tr>
+    <tr>
+      <td class="_1234">第四节</td>
+    </tr>
+    <tr>
+      <td class="_5678">第五节<br>14:00</td>
+      <td class=course rowspan="2"><button onclick="displayJ()">证券投资技术分析</button></td>
+      <td class=course rowspan="2"> </td>
+      <td class=course rowspan="2"></td>
+      <td class=course rowspan="2"><button onclick="displayB()">web程序设计</button> </td>
+      <td class=course rowspan="2"> </td>
+    </tr>
+    <tr>
+      <td class="_5678">第六节</td>
+
+    </tr>
+    <tr>
+      <td class="_5678">第七节<br>16:10</td>
+      <td class=course rowspan="2"><button onclick="displayK()">专业英语</button> </td>
+      <td class=course rowspan="2"><button onclick="displayD()">信息检索技术</button> </td>
+      <td class=course rowspan="2"><button onclick="displayA()">windows程序设计</button> </td>
+      <td class=course rowspan="2"><button onclick="displayL()">编译原理</button></td>
+      <td class=course rowspan="2"> </td>
+    </tr>
+    <tr>
+      <td class="_5678">第八节</td>
+
+    </tr>
+    <tr>
+      <td class="_5678">第九节<br>18:30</td>
+      <td class=course rowspan="2"> </td>
+      <td class=course rowspan="3"><button onclick="displayM()">人体解剖生理学</button></td>
+      <td class=course rowspan="2"> </td>
+      <td class=course rowspan="2"> </td>
+      <td class=course rowspan="2"> </td>
+      <td class=course rowspan="2"> </td>
+      <td class=course rowspan="2"> </td>
+    </tr>
+    <tr>
+      <td class="_5678">第十节</td>
+    </tr>
+    <tr>
+      <td class="_5678">第十一节<br>20:15</td>
+      <td class=course rowspan="2"> </td>
+      <td class=course rowspan="2"> </td>
+      <td class=course rowspan="2"> </td>
+      <td class=course rowspan="2"> </td>
+      <td class=course rowspan="2"> </td>
+      <td class=course rowspan="2"> </td>
+    </tr>
+    <tr>
+      <td class="_5678">第十二节</td>
+      <td> </td>
+    </tr>
+  </table>
+    </div>
+    
+    <div class="column right">
+      <h2 >课程简介</h2>
+      <p id="A"></p>
+      <p id="B"></p>
+      <p id="C"></p>
+      <p id="D"></p>
+      <p id="E"></p>
+      <p id="F"></p>
+      <p id="H"></p>
+      <p id="I"></p>
+      <p id="J"></p>
+      <p id="K"></p>
+      <p id="L"></p>
+      <p id="M"></p>
+      <p id="N"></p>
+    </div>
+    <script>
+      function displayA() {
+        document.getElementById("A").innerHTML = "windows程序设计是一门面向大三年级的专业选修课程</br><br>主要为对C#语言的熟悉和运用</br><br>上课时间：周一1-2节 周三7-8节（双）</br><br>上课地点：n217</br><br>上课老师：Zhao</br>";
+      }
+      function displayB(){
+        document.getElementById("B").innerHTML ="web程序设计是一门面向大三年级的专业选修课程</br><br>主要为对javascript css html语言的熟悉和运用</br><br>上课时间：周二1-2节 周四5-6节</br><br>上课地点：n108</br><br>上课老师：TU</br>"
+      }
+      function displayC(){
+        document.getElementById("C").innerHTML ="人工智能是一门面向大三年级的专业选修课程</br><br>主要为对机器学习的基本语法的熟悉运用</br><br>上课时间：周三1-2节</br><br>上课地点：n113</br><br>上课老师：Dai</br>"
+      }
+      function displayD(){
+        document.getElementById("D").innerHTML ="<br>信息检索技术是一门面向大三年级的专业必修课程</br><br>主要对搜索引擎技术的基本了解</br><br>上课时间：周四1-2节 周二7-8节</br><br>上课地点：n108</br><br>上课老师：Zhang</br>"
+      }
+      function displayE(){
+        document.getElementById("E").innerHTML ="<br>操作系统原理是一门面向大三年级的专业必修课程</br><br>主要为对计算机最基层软件的基本语法的熟悉运用</br><br>上课时间：周五1-2节 周三3-4节</br><br>上课地点：n213</br><br>上课老师：Yu</br>"
+      }
+      function displayF(){
+        document.getElementById("F").innerHTML ="<br>心理学进展是一门面向大三年级心理学辅修的专业必修课程</br><br>主要为对心理学史以及最前沿研究的进展了解</br><br>上课时间：周六1-8节</br><br>上课地点：n223</br><br>上课老师：Wang</br>"
+      }
+      function displayG(){
+        document.getElementById("G").innerHTML ="<br>实验心理学是一门面向大三年级心理学辅修的专业必修课程</br><br>主要为对心理学实验的设计原理以及实验的基本设计的设计</br><br>上课时间：周日1-8节</br><br>上课地点：n223</br><br>上课老师：Ding</br>"
+      }
+      function displayH(){
+        document.getElementById("H").innerHTML ="<br>微机原理与接口技术是一门面向大三年级的专业必修课程</br><br>主要是对计算机汇编语言的学习与应用</br><br>上课时间：周一3-4节 周三7-8节（单周）</br><br>上课地点：n217</br><br>上课老师：Yao</br>"
+      }
+      function displayI(){
+        document.getElementById("I").innerHTML ="<br>习近平新时代中国特色社会主义是一门面向大三年级的专业必修课程</br><br>主要是对习近平新时代中国特色社会主义的背景等的了解</br><br>上课时间：周四3-4节</br><br>上课地点：n223</br><br>上课老师：Yao</br>"
+      }
+      function displayJ(){
+        document.getElementById("J").innerHTML ="<br>证卷投资技术分析是一门面向本科生的通时核心课程</br><br>主要是对证券股票行情的分析</br><br>上课时间：周一5-6节</br><br>上课地点：8516</br><br>上课老师：He</br>"
+      }
+      function displayK(){
+        document.getElementById("K").innerHTML ="<br>专业英语是一门面向大三年级的专业选修课程</br><br>主要为对计算机专用英语名词的熟悉运用</br><br>上课时间：周一7-8节 </br><br>上课地点：n113</br><br>上课老师：Zhao</br>";
+      }
+      function displayL(){
+        document.getElementById("L").innerHTML ="<br>编译原理是一门面向大三年级的专业选修课程</br><br>主要为对计算机程序运行时候机器所作的工作原理的解析</br><br>上课时间：周四7-8节 </br><br>上课地点：n211</br><br>上课老师：Cai</br>";
+      }
+      function displayM(){
+        document.getElementById("M").innerHTML ="<br>人体解剖生理学是一门面向大三年级心理学辅修的专业必修课程</br><br>主要介绍人体的结构，为之后的心理研究作了解</br><br>上课时间：周二9-11节</br><br>上课地点：n104</br><br>上课老师：Chen</br>"
+      }
+      function displayN(){
+        document.getElementById("N").innerHTML ="<br>人类遗传发育与优生是一门面向本科生的通识选修课程</br><br>主要介绍人类在遗传方面的影响因素，为优生提供建议</br><br>上课时间：周五3-4节</br><br>上课地点：7209</br><br>上课老师：Ye</br>"
+      }
+      </script>
+</div>
+
+
+</body>
+</html>
