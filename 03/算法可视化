@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>排序算法可视化</title>
+   <!--<link href="index.css" rel="stylesheet" type="text/css"/> -->
+   <style type="text/css">
+   		.container{
+			position: relative;
+   			margin: 0 auto;
+            background:rgb(164, 221, 231);
+   		}
+		.control{
+			margin-bottom: 20px;
+		}
+		.circle{
+			margin: 0 auto;
+			width: 50px;
+			height: 50px;
+		}
+		input[type="number"]{
+			width: 100px;
+		}
+		/* 
+		rect:hover{
+		    fill: #4169E1;
+		} */
+        
+   </style>
+</head>
+<body>
+<div class="container">
+	<div class="control">
+		length: 
+		<input type="number" id="number">
+		<input type="button" name="click" value="  随机生成数组  " id="getArr">
+		<select id="order">
+			<option>升序</option>
+			<option>降序</option>
+		</select>
+		<select id="select">
+			<option>选择排序</option>
+			<option>冒泡排序</option>
+		</select>
+		time(ms):
+		<input type="number" value="1000" id="deley">
+		<input type="button" name="click" value="开始排序" id="button">
+	</div>
+	<svg id="svg" width="800" height="500"></svg>
+</div>
+ 
+<script type="text/javascript">
+"use strict";//严格模式
+(function(){
+var animation_flag = false;//正在执行动画
+//计算加入事件队列的时刻，与执行延时函数的次数，相等时表示动画执行完毕
+var show_count = 0,deley_count = 0;
+var deley_space = 1000;//动画延时间隔
+var select = document.getElementById("select");
+var button = document.getElementById("button");
+var orderSelect = document.getElementById("order");
+var getArrDom = document.getElementById("getArr");
+var numberDom = document.getElementById("number");
+var deleyDom = document.getElementById("deley");
+ 
+//随机生成指定长度，固定区间的数组
+var random = function(n,max,min){
+	var arr = [];
+	if(typeof max !== "number"||max<100){
+		max = 100;
+	}
+	if(typeof min !== "number"){
+		min = 0;
+	}
+	for(let i=0;i<n;i++){
+		arr[i] = parseInt(Math.random()*(max-min+1))+min;
+	}
+	return arr;
+}
+//将数组用SVG显示数组
+var showArr = function(arr,m,n){
+	var svg = document.getElementById("svg");
+	var rectStr = "",textStr = "",lineStr = "";//矩形、文本和线的HTML字符串
+	var height = svg.getAttribute("height"),width = svg.getAttribute("width");//画布宽高
+	var rectWidth = 1, rectHeight = 1, spaceWidth = 1;//矩形宽度、间隔宽度
+	var margin_level = 20,margin_veticle = 40;//水平、垂直边距
+	var maxValue = 0;
+	rectWidth = (width-margin_level*2)/(arr.length)*0.6;
+	spaceWidth = rectWidth*2/3;
+	svg.innerHTML = "";
+ 
+	var getMax = function(arr){
+		var max = 0;
+		for(let i=0;i<arr.length;i++){
+			if(max < arr[i]){
+				max = arr[i];
+			}
+		}
+		return max;
+	}
+	var getHeight = function(h){
+		return (height-2*margin_veticle)*(h/maxValue);
+	}
+	maxValue = getMax(arr);
+	
+	//画线和数字
+	for(let i=0;i<arr.length;i++){
+		let cx = 0, cy = 0;//当前结点的定位像素坐标
+		let color = "#C4A8E0";
+		rectHeight = getHeight(arr[i]);
+		cx = i * (spaceWidth + rectWidth) + margin_level;
+		cy = height - rectHeight - margin_veticle;
+ 
+		if(i===m){
+			color = "#FFE8A0";
+		}else if(i===n){
+			color = "#D8ADD3";
+		}
+		if(i===m&&i===n){
+			color = "#FFB7CC";
+		}
+		var font_size = rectWidth/2>20?20:rectWidth/2
+		rectStr += '<rect x="'+cx+'" y="'+cy+'" width="'+rectWidth+'" height="'+rectHeight+'" fill="'+color+'"/>';
+		//lineStr += '<line x1="'+startcx+'" y1="'+startcy+'" x2="'+endcx+
+		//	'" y2="'+endcy+'" style="stroke:#999;stroke-width:2" />';
+ 
+		textStr += '<text x="'+(cx+rectWidth/2)+'" y="'+(cy-6)+'" fill="#171717"  style="font-size:'+font_size+'pt;text-anchor: middle">'+arr[i]+'</text>';
+		textStr += '<text x="'+(cx+rectWidth/2)+'" y="'+(height-25+font_size)+'" fill="#171717"  style="font-size:'+font_size+'pt;text-anchor: middle">'+(i+1)+'</text>';
+	}
+	lineStr += '<line x1="0" y1="0" x2="0" y2="'+(height-30)+'" style="stroke:#666;stroke-width:4" />'
+	+'<line x1="0" y1="'+(height-margin_veticle+10)+'" x2="'+width+'" y2="'+(height-margin_veticle+10)+'" style="stroke:#666;stroke-width:2" />';
+	svg.innerHTML = lineStr+rectStr+textStr;
+}
+//延时动画
+var showSort = function(arr,m,n){
+	var array = [];
+	for(let i=0;i<arr.length;i++){
+		array[i] = arr[i];
+	}
+	var callback = function(array,m,n){
+		animation_flag = true;
+		showArr(array,m,n);
+		deley_count++;
+		if(deley_count>=show_count){
+			setTimeout(function(){
+				showArr(array);
+				animation_flag = false;//动画执行完毕
+				console.log("排序完成");
+				show_count=0;
+				deley_count=0;
+			},deley_space);
+		}
+	}
+	setTimeout(callback,deley_space*show_count++,array,m,n);
+}
+//各种排序算法
+var Sort = function(){
+	//判断是否为数组
+	var isArray = function(arr){
+		if(Object.prototype.toString.call(arr) === "[object Array]"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	//冒泡排序, arr:Array type：Boolean(true为升序，false为降序),默认为升序,showSort:排序可视化
+	var bubbleSort = function(arr,type,showSort){
+		//输入检测
+		if(!isArray(arr)){
+			throw Error("the input of bubbleSort is not a array");
+			return;
+		}
+		//深拷贝，不改动输入数组
+		var out = [];
+		for(let i=0;i<arr.length;i++){
+			out[i] = arr[i];
+		}
+		//order==false为升序，否则为降序
+		var order = type!==true?1:-1;
+		for(let i=1;i<out.length;i++){
+			for(let j=0;j<out.length-i;j++){
+				if(typeof showSort === "function"){
+					showSort(out,j,j+1);
+				}
+				if(order*out[j] > order*out[j+1]){
+					let tem = out[j];
+					out[j] = out[j+1];
+					out[j+1] = tem;
+				}
+				if(typeof showSort === "function"){
+					showSort(out,null,null);
+				}
+			}
+		}
+		//console.log(out);
+		return out;
+	}
+	//选择排序
+	var selectSort = function(arr,type,showSort){
+		//输入检测
+		if(!isArray(arr)){
+			throw Error("the input of bubbleSort is not a array");
+			return;
+		}
+		//深拷贝，不改动输入数组
+		var out = [];
+		for(let i=0;i<arr.length;i++){
+			out[i] = arr[i];
+		}
+		//order==false为升序，否则为降序
+		var order = type!==true?1:-1;
+		for(let i=0;i<out.length;i++){
+			let index = i;
+			for(let j=i;j<out.length;j++){
+				if(typeof showSort === "function"){
+					showSort(out,index,j);
+				}
+				if(order*out[j]<order*out[index]){
+					index = j;
+				}
+			}
+			let temp = out[i];
+			out[i] = out[index];
+			out[index] = temp;
+			if(typeof showSort === "function"){
+				showSort(out,null,null);
+			}
+		}
+		
+		return out;
+	}
+
+	//基数排序
+	var radixSort = function(arr,type,showSort){
+		//输入检测
+		if(!isArray(arr)){
+			throw Error("the input of bubbleSort is not a array");
+			return;
+		}
+		//深拷贝，不改动输入数组
+		var out = [];
+		for(let i=0;i<arr.length;i++){
+			out[i] = arr[i];
+		}
+		//order==false为升序，否则为降序
+		var order = type!==true?1:-1;
+		var len = out.length;
+		//求所有数中最大的
+		var max = 0;
+		for(let i=0;i<len;i++){
+			if(out[i]>max){
+				max = out[i];
+			}
+		}
+		//计算所有数中最大的是几位数
+		var max_pow = 1;
+		while(max>=10){
+			max_pow++;
+			max = parseInt(max/10);
+		}
+		//升序，分配
+		var distributeUp = function(out, queue, pow){
+			queue.splice(0,queue.length);
+			for(let i=0;i<len;i++){
+				let m = parseInt(out[i]/pow)%10;
+				if(Object.prototype.toString.call(queue[m]) !== "[object Array]"){
+					queue[m] = [];
+				}
+				queue[m].push(out[i]);
+			}
+		}
+		//升序，收集
+		var collectUp = function(out, queue){
+			out.splice(0,out.length);
+			for(let i=0;i<10;i++){
+				while(queue[i]!==undefined && queue[i].length>0){
+					out.push(queue[i].shift());
+				}
+			}
+		}
+		//降序，分配
+		var distributeDown = function(out, queue, pow){
+			queue.splice(0,queue.length);
+			for(let i=len-1;i>=0;i--){
+				let m = parseInt(out[i]/pow)%10;
+				if(Object.prototype.toString.call(queue[m]) !== "[object Array]"){
+					queue[m] = [];
+				}
+				queue[m].push(out[i]);
+			}
+		}
+		//降序，收集
+		var collectDown = function(out, queue){
+			out.splice(0,out.length);
+			for(let i=9;i>=0;i--){
+				while(queue[i]!==undefined && queue[i].length>0){
+					out.push(queue[i].pop());
+				}
+			}
+		}
+ 
+		var queue = [];
+		if(type!==true){
+			//升序
+			for(let i=0;i<max_pow;i++){
+				distributeUp(out, queue, Math.pow(10,i));
+				collectUp(out, queue);
+			}
+		}else{
+			//降序
+			for(let i=0;i<max_pow+1;i++){
+				distributeDown(out, queue, Math.pow(10,i));
+				collectDown(out, queue);
+			}
+		}
+		if(typeof showSort === "function"){
+			showSort(out,null,null);
+		}
+		
+		return out;
+	}
+	var obj = {
+		bubbleSort: bubbleSort,
+		selectSort: selectSort,
+	}
+	return obj;
+}
+//初始化函数
+var init = function(){
+	//实例化排序对象
+	var sort = new Sort();
+	var arr = [];
+	var number = Number(numberDom.value.trim());
+	if(number!==NaN&&number>0){
+		arr = random(number,number,1);
+		showArr(arr);
+	}else{
+		arr = random(10,100,1);//随机生成待排序的数组
+		//刷新显示初始数组
+		showArr(arr);
+	}
+	arr = [2,8,7,4,1,5];
+	console.log("待排序的数组",arr);
+	showArr(arr);
+ 
+	//随机生成指定长度的数组
+	getArrDom.addEventListener("click",function(){
+		if(animation_flag===true){
+			return;
+		}
+		var number = Number(numberDom.value.trim());
+		if(number!==NaN&&number>0){
+			arr = random(number,number,1);
+			console.log("随机生成的数组",arr);
+			showArr(arr);
+		}else{
+			alert("请输入正确的数组长度");
+		}
+	});
+	//点击开始排序
+	button.addEventListener("click",function(){
+		//在动画中点击无效
+		if(animation_flag===true){
+			return;
+		}
+		deley_space = Number(deleyDom.value.trim());//输入的动画时间间隔，控制动画快慢(单位ms)
+		var order = orderSelect.selectedIndex===0?false:true;//选择的排序顺序
+		var index = select.selectedIndex;//选择的排序方法
+		var traversalArr = [];
+		//按选择的排序方式和顺序排序
+		switch(index){
+			case 1: traversalArr = sort.bubbleSort(arr,order,showSort);
+					console.log("冒泡排序:",traversalArr);
+					break;
+			case 0: traversalArr = sort.selectSort(arr,order,showSort);
+					console.log("选择排序:",traversalArr);
+					break;
+			default: //alert("选择遍历方式出错");
+					break;
+		}	
+	});
+}
+//初始化
+init();
+ 
+})();
+</script>
+</body>
+</html>
