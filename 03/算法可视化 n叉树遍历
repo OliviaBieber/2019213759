@@ -3,24 +3,27 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>树的遍历</title>
-   <style type="text/css">
+   <style type="text/css">/*规定样式表的 MIME 类型。*/
+		/*定义层次结构(层叠样式)*/
    		.container{
    			width: 600px;
    			height: 800px;
-   			margin: 0 auto;
+   			margin: auto;
    		}
+		   /*结点样式*/
 		.node{
 			width: 100px;
 			min-height: 100px;
 		}
+		/*结点形状*/
 		.circle{
-			margin: 0 auto;
+			margin: auto;
 			width: 50px;
 			height: 50px;
 		}
    </style>
 </head>
-<body>
+<body style="background:pink">
 <div class="container">
 	<div class="control">
 		<select id="select">
@@ -32,9 +35,9 @@
 	</div>
 	<svg id="svg" width="600" height="600"></svg>
 </div>
-	
-   <!-- <script type="text/javascript" src="singlyLinkedList.js"></script> -->
+
 <script type="text/javascript">
+	/*匿名函数 立刻调用*/
 (function(){
 var treeData = {
 	data: 1,
@@ -57,11 +60,29 @@ var treeData = {
 				},
 				{
 					data: 5,
-					childrens:[]
+					childrens:[
+					{
+							data: "A",
+							childrens:[]
+						},
+						{
+							data: "B",
+							childrens:[]
+						}
+					]
 				},
 				{
 					data: 6,
-					childrens:[]
+					childrens:[
+					{
+							data: "C",
+							childrens:[]
+						},
+						{
+							data: "D",
+							childrens:[]
+						}
+					]
 				}
 			]
 		},
@@ -71,12 +92,12 @@ var treeData = {
 				{
 					data: 7,
 					childrens:[
-						{
-							data: "A",
+					{
+							data: "E",
 							childrens:[]
 						},
 						{
-							data: "B",
+							data: "R",
 							childrens:[]
 						}
 					]
@@ -129,6 +150,7 @@ var BinaryTree = function(){
 		console.log(node.data);
 		return;
 	}
+	//非二叉树
 	//前序遍历非递归实现
 	var PreOrderTraversal = function(rootNode){
 		var stack = [];//存放结果的栈
@@ -173,64 +195,6 @@ var BinaryTree = function(){
 		}
 		return result;
 	}
-	/*//前序遍历非递归实现1
-	var PreOrderTraversal1 = function(rootNode){
-		var stack = [];//暂存结点的栈
-		var result = [],count = 0;//存放遍历结果的数组
-		var p = rootNode;
-		var  = null;
-		while(p!==null && stack.length>0){
-			while(ppre!==null){
-				result[count++]=p.data;
-				stack.push(p);
-				if(p.childrens.length>0){
-					p = p.childrens[0];
-				}else{
-					p = null;
-				}
-			}
-			if(stack.length>0){
-				p = stack[stack.length-1];
-				var len = p.childrens.length;
-				if(len===0 && pre===p.childrens[len-1] ){
-					stack.pop();
-					p = stack[stack.length-1].childrens[]
-				}else{
-					//当前结点有子节点，压栈
-					for(let i = p.childrens.length-1;i>=1;i--){
-						stack.push(p.childrens[i]);
-					}
-				}
-				pre = p;
-				p = p.childrens[1];
-			}
-		}
-		stack.push(rootNode);
-		
-		return result;
-	}*/
-	//后序遍历非递归实现1
-	var PostOrderTraversal1 = function(rootNode){
-		var stack = [];//暂存结点的栈
-		var result = [],count = 0;//存放遍历结果的数组
-		var pre = null, cur = null;//前一个遍历的结点，当前遍历的结点
-		stack.push(rootNode);
-		while(stack.length>0){
-			cur = stack[stack.length-1];//取当前结点
-			var len = cur.childrens.length;
-			if(len===0||pre === cur.childrens[len-1]){
-				//当前结点没有子节点或子节点已经遍历完毕
-				var pre = stack.pop();
-				result[count++] = pre.data;
-			}else{
-				//当前结点有子节点，压栈
-				for(let i = cur.childrens.length-1;i>=0;i--){
-					stack.push(cur.childrens[i]);
-				}
-			}
-		}
-		return result;
-	}
 		//层序遍历
 	var LeverOrderTraversal1 = function(tree){
 		var rootNode = JSON.parse( JSON.stringify(tree) );
@@ -262,24 +226,15 @@ var BinaryTree = function(){
 		return result;
 	}
 	return {
-		PreOrderTraversalRecursion: PreOrderTraversalRecursion,
-		PostOrderTraversalRecursion: PostOrderTraversalRecursion,
-		PreOrderTraversal: PreOrderTraversal,
-		PostOrderTraversal: PostOrderTraversal,
-		PostOrderTraversal1: PostOrderTraversal1,
-		LeverOrderTraversal1: LeverOrderTraversal1
+		PreOrderTraversalRecursion: PreOrderTraversalRecursion,//二叉树前序遍历
+		PostOrderTraversalRecursion: PostOrderTraversalRecursion,//二叉树后序遍历
+		PreOrderTraversal: PreOrderTraversal,//n叉树前序遍历
+		PostOrderTraversal: PostOrderTraversal,//n叉树后序遍历
+		LeverOrderTraversal1: LeverOrderTraversal1//层次遍历
 	}
 }
  
-/*var tree = new BinaryTree();
-tree.PreOrderTraversalRecursion(treeData);
-console.log("\n");
-tree.PostOrderTraversalRecursion(treeData);
-console.log("前序优先前序遍历：",tree.PreOrderTraversal(treeData));
-console.log("深度优先后序遍历：",tree.PostOrderTraversal(treeData));
-console.log("深度优先后序遍历1：",tree.PostOrderTraversal1(treeData));
-console.log("层序遍历/广度优先遍历：",tree.LeverOrderTraversal1(treeData));*/
- 
+ /*二叉树的界面表示*/
 var showTree = function(){
 	var svg = document.getElementById("svg");
 	var circleStr = "",lineStr = "",textStr = "";//圆、线和文本的HTML字符串
@@ -310,7 +265,7 @@ var showTree = function(){
 		return size;
 	})(nodes);
 	//设置SVG画布尺寸
-	svg.setAttribute("width",size.width);
+	svg.setAttribute("width",size.width);//添加属性
 	svg.setAttribute("height",size.height);
 	svg.parentNode.style.width = size.width+"px";
 	var width = size.width;
@@ -333,7 +288,7 @@ var showTree = function(){
 		nodes[i].cy = cy;
 		lineStr += '<line x1="'+nodes[i].cx+'" y1="'+nodes[i].cy+'" x2="'+nodes[i].father.cx+
 			'" y2="'+nodes[i].father.cy+'" style="stroke:black;stroke-width:2" />';
-		circleStr += '<circle cx="'+cx+'" cy="'+cy+'" r="20" fill="#9F79EE"/></circle>';
+		circleStr += '<circle cx="'+cx+'" cy="'+cy+'" r="20" fill="#2DD9F2"/></circle>';
 		//调整文本缩进
 		var textcx = nodes[i].data>9?(nodes[i].cx-10):(nodes[i].cx-5),
 			textcy = (nodes[i].cy+6);
@@ -343,7 +298,7 @@ var showTree = function(){
 }
 //showTree();
  
- 
+//动态画显示遍历过程
 var showTreeTraverse = function(id){
 	var svg = document.getElementById("svg");
 	svg.innerHTML = "";
@@ -383,7 +338,7 @@ var showTreeTraverse = function(id){
  
 	//遍历所有树的结点，生成圆、线和文本的HTML字符串
 	for(let i =0;i<nodes.length;i++){
-		let nodeColor = nodes[i].data === id?"#080808":"#9F79EE";
+		let nodeColor = nodes[i].data === id?"#8F3A6B45":"#2DD9F2";
  
 		let cx = 0, cy = 0;//当前结点的定位像素坐标
 		let father = nodes[i].father;
@@ -444,7 +399,6 @@ button.addEventListener("click",function(){
 				break;
 		
 	}
-	//注意，这里故意
 	for(let i =0;i<=traversalArr.length;i++){
 		setTimeout(function(i){
 			showTreeTraverse(traversalArr[i],nodes);
